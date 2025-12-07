@@ -1,0 +1,22 @@
+project_name: "VisionGuard_AI"
+
+data:
+  raw_path: "data/raw"
+  train_dir: "data/raw"  # Root directory containing 'REAL' and 'FAKE' subdirectories
+  test_dir: "data/raw"
+  image_size: 224
+  batch_size: 32
+  num_workers: 0  # Set to 0 on Windows, increase to 2-4 on Linux/Mac for faster data loading
+
+model:
+  name: "dinov2_vits14"
+  num_classes: 2  # Real vs Fake
+  learning_rate: 0.0001
+  learning_rate_head: 0.001  # Learning rate for fine-tuning the classification head
+  epochs: 10
+  device: "auto"  # 'cuda', 'cpu', or 'auto' for automatic detection
+
+training:
+  save_dir: "models_saved"  # Directory to save trained models
+  save_best: true
+  patience: 3  # Early stopping patience
